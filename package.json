@@ -7,7 +7,8 @@
     "test": "node tests/catalog.test.cjs && node tests/iptv.test.cjs && node tests/epg.test.cjs && node tests/remote.test.cjs && node tests/remote-persistence.cjs",
     "test:remote": "node tests/remote-keyboard.cjs",
     "build": "ares-package app service --outdir dist",
-    "screenshots": "node tools/screenshots.cjs"
+    "screenshots": "node tools/screenshots.cjs",
+    "screenshots:padel": "node tools/screenshots-padel.cjs"
   },
   "devDependencies": {
     "playwright-core": "1.58.2"

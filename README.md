@@ -19,13 +19,15 @@ App indipendente per LG webOS: player IPTV per le proprie playlist M3U e catalog
 
 ## Schermate
 
-Le immagini mostrano l'app reale nel browser con **dati dimostrativi**. Nomi di canali del digitale terrestre, programmi e calendario sono esempi; il fotogramma sportivo è un'illustrazione, non una trasmissione. Nessuna playlist personale è inclusa.
+Le schermate **Padel TV** mostrano il catalogo reale Red Bull TV nell’app, acquisito il 10 ottobre 2026, con titoli, miniature e stati disponibili in quel momento. Le schermate **IPTV** usano canali e programmi dimostrativi; il campo nel player IPTV è un’illustrazione. Nessuna playlist personale è inclusa.
 
 | Canali e bouquet | Guida durante la visione |
 |---|---|
 | ![Lista canali](docs/assets/channels.png) | ![Guida TV](docs/assets/player.png) |
 | Lista sovrapposta al video | Tornei e replay |
 | ![Overlay](docs/assets/overlay.png) | ![Padel](docs/assets/padel.png) |
+
+![Replay del torneo precedente nel catalogo reale](docs/assets/padel-replay.png)
 
 [Telecomando web su smartphone](docs/assets/remote.png)
 
