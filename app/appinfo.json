@@ -1,0 +1,13 @@
+{
+  "id": "it.pepis.padel.tv",
+  "version": "0.6.0",
+  "vendor": "Pepis",
+  "type": "web",
+  "main": "index.html",
+  "title": "Padel IPTV",
+  "icon": "icon.png",
+  "resolution": "1920x1080",
+  "requiredMemory": 128,
+  "disableBackHistoryAPI": true,
+  "requiredACG": []
+}

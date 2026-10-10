@@ -1,0 +1,14 @@
+#EXTM3U
+# Esempio NON riproducibile: sostituire gli URL con sorgenti autorizzate.
+#EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1" group-title="Digitale terrestre",Rai 1
+https://example.invalid/Rai1.it/index.m3u8
+#EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2" group-title="Digitale terrestre",Rai 2
+https://example.invalid/Rai2.it/index.m3u8
+#EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3" group-title="Digitale terrestre",Rai 3
+https://example.invalid/Rai3.it/index.m3u8
+#EXTINF:-1 tvg-id="Canale5.it" tvg-name="Canale 5" group-title="Digitale terrestre",Canale 5
+https://example.invalid/Canale5.it/index.m3u8
+#EXTINF:-1 tvg-id="Italia1.it" tvg-name="Italia 1" group-title="Digitale terrestre",Italia 1
+https://example.invalid/Italia1.it/index.m3u8
+#EXTINF:-1 tvg-id="La7.it" tvg-name="La7" group-title="Digitale terrestre",La7
+https://example.invalid/La7.it/index.m3u8

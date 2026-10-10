@@ -1,0 +1,6 @@
+TLS certificate authorities used for playlist downloads.
+Exported from Node.js v26.7.0 tls.rootCertificates (118 bundled Mozilla CA certificates), 2026-10-10.
+No private keys. Retain normal certificate and hostname verification.
+Node 0.12 requires separate CA PEM entries: download.js splits the bundle into an array.
+Regenerate from a maintained local Node release when updating the application:
+node -e "require('fs').writeFileSync('service/ca-roots.pem',require('tls').rootCertificates.join('\n')+'\n')"

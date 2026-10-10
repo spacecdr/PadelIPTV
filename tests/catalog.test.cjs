@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');const C=require('../app/catalog.js');
+const now=Date.parse('2026-10-10T11:30:00Z');
+const data=Array.from({length:14},(_,i)=>({id:String(i),first:new Date(now-i*86400000).toISOString()}));data.reverse();data.push({id:'future',first:'2026-10-15T10:00:00Z'});
+assert.deepEqual(C.recent(data,now).map(x=>x.id),Array.from({length:10},(_,i)=>String(i)));
+assert.equal(C.status({badges:[{type:'upcoming'}],start_time:'2020-01-01',playable:false}).kind,'upcoming');
+assert.equal(C.status({badges:[{type:'live'}],playable:true}).kind,'live');
+assert.equal(C.status({badges:[{type:'replay_available'}],playable:true}).kind,'replay');
+assert.equal(C.status({playable:false}).kind,'unavailable');
+assert.match(C.date('2026-10-10T12:00:00Z',true),/14:00/);
+assert.match(C.date('2026-12-10T12:00:00Z',true),/13:00/);
+assert.equal(C.unique([{id:'a'},{id:'a'},{id:'b'}]).length,2);
+console.log('PASS: limite 10, ordine, futuro escluso, stati ufficiali, ora italiana estate/inverno, deduplica');
