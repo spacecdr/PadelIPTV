@@ -5,6 +5,8 @@
 
 App indipendente per LG webOS: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.0**, distribuita come pacchetto `.ipk` installabile in Developer Mode.
 
+**Porting Samsung Tizen:** disponibile nel ramo di sviluppo per UE55NU7400/Tizen 4.0, con IPTV, EPG e telecomando web autonomo. Build, collaudo e limiti in [tizen/README.md](tizen/README.md). La release qui collegata rimane quella LG webOS.
+
 ![Home di Padel IPTV](docs/assets/home.png)
 
 ## Cosa puoi fare

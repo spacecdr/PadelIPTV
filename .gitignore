@@ -4,3 +4,6 @@ dist/
 *.log
 private/
 *.ipk
+*.wgt
+*.p12
+*.pfx

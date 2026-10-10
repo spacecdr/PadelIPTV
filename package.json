@@ -8,9 +8,13 @@
     "test:remote": "node tests/remote-keyboard.cjs",
     "build": "ares-package app service --outdir dist",
     "screenshots": "node tools/screenshots.cjs",
-    "screenshots:padel": "node tools/screenshots-padel.cjs"
+    "screenshots:padel": "node tools/screenshots-padel.cjs",
+    "build:tizen": "node tools/build-tizen.cjs",
+    "test:tizen": "node tests/tizen/avplay.test.cjs && node tests/tizen/browser.cjs && node tests/tizen/services.cjs && node tests/tizen/remote.cjs"
   },
   "devDependencies": {
+    "js-sha1": "^0.7.0",
+    "pako": "^2.1.0",
     "playwright-core": "1.58.2"
   }
 }
