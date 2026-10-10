@@ -2,7 +2,7 @@
 
 ## Build
 
-Richiede Node.js moderno per i test, la CLI LG webOS TV sul PATH (pacchetto verificato con CLI 3.2.6) e Chrome per i test browser. Non cambiare la compatibilità ES5 del codice distribuito: il servizio deve funzionare anche su Node 0.12.2.
+Richiede Node.js 22 o successivo per i test, la CLI LG webOS TV sul PATH (pacchetto verificato con CLI 3.2.6) e Chrome per i test browser. Non cambiare la compatibilità ES5 del codice distribuito: il servizio deve funzionare anche su Node 0.12.2.
 
 ```sh
 npm ci
@@ -13,7 +13,7 @@ npm run build
 
 Il risultato è `dist/it.pepis.padel.tv_0.6.0_all.ipk`. Il comando sottostante è `ares-package app service --outdir dist`: includere sempre entrambe le directory. Node/npm non sono necessari sulla TV per installare l'IPK.
 
-Per verificare l'interfaccia IPTV con dati sintetici, in un terminale eseguire `python3 -m http.server 8769 --bind 127.0.0.1 --directory app`, poi `node tests/iptv-browser.cjs`. Il test non contatta una TV. I test unitari coprono parser M3U, persistenza, gruppi/preferiti/zapping, matcher XMLTV, gzip, fallback/cache e sicurezza del telecomando. `npm run screenshots` avvia un proprio server temporaneo e genera le immagini demo in `docs/assets`; usa solo fixture.
+Per verificare l'interfaccia IPTV con dati sintetici, in un terminale eseguire `python3 -m http.server 8769 --bind 127.0.0.1 --directory app`, poi `node tests/iptv-browser.cjs`. Per una porta diversa impostare `APP_URL=http://127.0.0.1:PORTA`. Il test non contatta una TV. I test unitari coprono parser M3U, persistenza, gruppi/preferiti/zapping, matcher XMLTV, gzip, fallback/cache e sicurezza del telecomando. `npm run screenshots` avvia un proprio server temporaneo e genera le immagini demo in `docs/assets`; usa solo fixture.
 
 ## Struttura
 
