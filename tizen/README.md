@@ -12,7 +12,7 @@ La playlist parte vuota. Aprire **Telecomando e playlist** sulla Home e visitare
 
 - Interfaccia e regole dei servizi condivise con webOS; `app/` e `service/` restano invariati.
 - `avplay-media.js`: adattatore AVPlay; `platform.js`: Back Samsung 10009, registrazione tasti e screensaver.
-- `storage.js`: archivio locale IndexedDB con sostituzione atomica; playlist, preferiti, guida e abbinamento appartengono a questa app Samsung.
+- `storage.js` e `storage-worker.js`: archivio locale IndexedDB compresso con sostituzione atomica in una sola transazione; lettura compatibile con i dati precedenti non compressi; playlist, preferiti, guida e abbinamento appartengono a questa app Samsung.
 - `bundle-tizen.cjs`: include parser M3U, servizio playlist, matcher XMLTV e cache EPG originali, adattando filesystem, URL, hash e download.
 - `epg-worker.js`: download gzip/XMLTV, decompressione pako e SAX fuori dal thread UI. Limiti 32 MiB compressi / 128 MiB XML; cache 6 ore e fallback come webOS.
 - `native/remote.cc`: trasporto HTTP via Pepper TCPSocket, ARM NaCl. Massimo 8 connessioni, limiti header/body, scadenze, scritture parziali e chiusura dopo risposta. Nessuna esecuzione di comandi di sistema.
@@ -65,3 +65,5 @@ TV reale: catalogo 10 tornei, live padel e pausa/riprendi; playlist via HTTPS co
 - [NaCl SDK](https://developer.samsung.com/smarttv/develop/extension-libraries/nacl/download.html)
 - [Socket TCP in C++](https://developer.samsung.com/smarttv/develop/extension-libraries/nacl/sample-based-tutorials/sockets-in-cplusplus.html)
 - [Certificati Samsung](https://developer.samsung.com/smarttv/develop/getting-started/setting-up-sdk/creating-certificates.html)
+
+Correzione bouquet (10 ottobre 2026): eliminata la doppia scrittura della playlist nei salvataggi temporanei, aggiunto il privilegio Tizen unlimitedstorage e compressione dei record grandi in Worker. Il dispositivo aveva restituito QuotaExceededError. Verificati più bouquet contemporanei e persistenza alla riapertura; test automatico verifica che un commit fallito conservi il dato precedente.

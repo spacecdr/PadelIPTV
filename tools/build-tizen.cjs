@@ -5,7 +5,7 @@ fs.rmSync(dest,{recursive:true,force:true});
 fs.mkdirSync(dest,{recursive:true});
 fs.cpSync(path.join(root,'app'),dest,{recursive:true});
 fs.cpSync(path.join(root,'tizen/licenses'),path.join(dest,'licenses'),{recursive:true});
-for(const name of ['config.xml','avplay-media.js','platform.js','diagnostics.js','storage.js','download.js','epg-worker.js','service.js','remote-server.js','remote-ui.js'])fs.copyFileSync(path.join(root,'tizen',name),path.join(dest,name));
+for(const name of ['config.xml','avplay-media.js','platform.js','diagnostics.js','storage.js','storage-worker.js','download.js','epg-worker.js','service.js','remote-server.js','remote-ui.js'])fs.copyFileSync(path.join(root,'tizen',name),path.join(dest,name));
 let html=fs.readFileSync(path.join(dest,'index.html'),'utf8');
 html=html.replace('<video id="video" playsinline></video>','<object id="av-player" type="application/avplayer" style="position:absolute;top:0;left:0;width:1920px;height:1080px"></object><video id="video" playsinline style="display:none"></video>');
 html=html.replace('<script src="vendor/hls.min.js"></script>','<script src="$WEBAPIS/webapis/webapis.js"></script><script src="avplay-media.js"></script><script src="platform.js"></script><script src="diagnostics.js"></script>');

@@ -1,0 +1,3 @@
+/* Compress large persisted records away from the UI thread. Old plain records remain readable. */
+importScripts('vendor/pako.min.js');
+onmessage=function(e){try{if(e.data.operation==='encode'){var packed=pako.deflate(e.data.value);postMessage({value:{encoding:'deflate-utf8-v1',data:packed}},[packed.buffer]);}else{var parts=[],size=0,inflate=new pako.Inflate({to:'string',chunkSize:65536});inflate.onData=function(s){size+=s.length;if(size>64*1024*1024)throw Error('Archivio troppo grande');parts.push(s);};inflate.push(e.data.value.data,true);if(inflate.err)throw Error('Archivio non leggibile');postMessage({value:parts.join('')});}}catch(err){postMessage({error:err.message});}};
