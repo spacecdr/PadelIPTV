@@ -1,6 +1,6 @@
 {
   "name": "it.pepis.padel.tv.remote",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "main": "service.js",
   "description": "Padel IPTV local remote"
 }

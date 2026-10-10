@@ -1,11 +1,11 @@
 <p align="center"><img src="docs/assets/icon.svg" width="110" alt="TV con pala da padel"></p>
 <h1 align="center">Padel IPTV</h1>
 <p align="center">I tuoi canali. Il tuo padel. Sulla stessa TV.</p>
-<p align="center"><a href="https://spacecdr.github.io/PadelIPTV/">Presentazione</a> · <a href="https://github.com/spacecdr/PadelIPTV/releases/latest">Scarica il pacchetto webOS</a> · <a href="DEVELOPMENT.md">Sviluppo</a></p>
+<p align="center"><a href="https://spacecdr.github.io/PadelIPTV/">Presentazione</a> · <a href="https://github.com/spacecdr/PadelIPTV/releases/latest">Download webOS / Tizen</a> · <a href="DEVELOPMENT.md">Sviluppo</a></p>
 
-App indipendente per LG webOS: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.0**, distribuita come pacchetto `.ipk` installabile in Developer Mode.
+App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.1**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
 
-**Porting Samsung Tizen:** disponibile nel ramo di sviluppo per UE55NU7400/Tizen 4.0, con IPTV, EPG e telecomando web autonomo. Build, collaudo e limiti in [tizen/README.md](tizen/README.md). La release qui collegata rimane quella LG webOS.
+**Samsung:** verificata su UE55NU7400/Tizen 4.0. Il WGT include il modulo ARM del telecomando e la correzione dei preferiti bouquet; richiede firma con certificati propri e DUID della TV. Non è un pacchetto universale per tutte le Samsung.
 
 ![Home di Padel IPTV](docs/assets/home.png)
 
@@ -21,7 +21,7 @@ App indipendente per LG webOS: player IPTV per le proprie playlist M3U e catalog
 
 ## Schermate
 
-Le schermate **Padel TV** mostrano il catalogo reale Red Bull TV nell’app, acquisito il 10 ottobre 2026, con titoli, miniature e stati disponibili in quel momento. Le schermate **IPTV** usano canali e programmi dimostrativi; il campo nel player IPTV è un’illustrazione. Nessuna playlist personale è inclusa.
+L’interfaccia è condivisa tra le due versioni; queste immagini illustrano la UI, non costituiscono un collaudo su ogni modello. Le schermate **Padel TV** mostrano il catalogo reale Red Bull TV nell’app, acquisito il 10 ottobre 2026, con titoli, miniature e stati disponibili in quel momento. Le schermate **IPTV** usano canali e programmi dimostrativi; il campo nel player IPTV è un’illustrazione. Nessuna playlist personale è inclusa.
 
 | Canali e bouquet | Guida durante la visione |
 |---|---|
@@ -35,19 +35,16 @@ Le schermate **Padel TV** mostrano il catalogo reale Red Bull TV nell’app, acq
 
 ## Installazione
 
-1. Scarica il file `.ipk` dalla [release](https://github.com/spacecdr/PadelIPTV/releases/latest).
-2. Sulla TV installa **Developer Mode**, accedi con un account LG Developer e abilita la modalità sviluppatore. Completa il riavvio e abilita Key Server per il collegamento iniziale.
-3. Sul computer installa la [CLI ufficiale LG](https://webostv.developer.lge.com/develop/tools/cli-introduction), configura la TV con `ares-setup-device` e acquisisci la chiave con `ares-novacom --device miaTV --getkey`. TV e computer devono comunicare sulla stessa rete.
-4. Installa e avvia:
+La [guida completa all’installazione](INSTALLAZIONE.md) descrive requisiti, account, Developer Mode, collegamento, comandi, aggiornamenti e problemi comuni per entrambi i sistemi.
 
-```sh
-ares-install --device miaTV it.pepis.padel.tv_0.6.0_all.ipk
-ares-launch --device miaTV it.pepis.padel.tv
-```
+| TV | File nella release | Preparazione |
+|---|---|---|
+| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.1_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
+| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.1-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
 
-Segui la [guida LG Developer Mode](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app) per account, connessione e rinnovo della sessione. Developer Mode ha una scadenza: l'installazione non equivale a una pubblicazione nello store LG.
+[Scarica la release](https://github.com/spacecdr/PadelIPTV/releases/latest). Il WGT è già compilato ma **non firmato**: contiene anche il server nativo ARM, senza certificati personali. Non occorre compilare C++ o installare una VM per usarlo. Il supporto NaCl necessario su Samsung limita la compatibilità; TV recenti non collaudate.
 
-Gli identificatori storici `it.pepis.padel.tv` e `it.pepis.padel.tv.remote` sono mantenuti per compatibilità con gli aggiornamenti. Il nome visualizzato è **Padel IPTV**.
+Gli ID `it.pepis.padel.tv` (LG) e `PadelIPTV1.PadelIPTV` (Samsung) restano stabili per gli aggiornamenti. Il nome visualizzato è **Padel IPTV**.
 
 ## Primo avvio e playlist
 
@@ -75,17 +72,17 @@ La release parte senza playlist. [examples/digitale-terrestre.m3u](examples/digi
 
 | Voce | Dettaglio |
 |---|---|
-| Dispositivo verificato | LG serie UM7390PLC, webOS 4.x (4.10.2-29) |
+| Dispositivi verificati | LG UM7390PLC, webOS 4.10.2-29; Samsung UE55NU7400 (2018), Tizen 4.0 |
 | Interfaccia | 1920 × 1080, HTML/CSS/JavaScript compatibile Chromium 53 |
 | Servizio TV | JavaScript ES5, compatibilità Node.js 0.12.2 / servizio Luna |
-| Player | HTML5 nativo, fallback HLS.js 1.6.16 |
+| Player | LG: HTML5 + fallback HLS.js 1.6.16; Samsung: AVPlay |
 | Playlist | M3U via HTTP/HTTPS, redirect, gruppi, `tvg-id`, `tvg-name`, `tvg-logo` |
 | Limiti playlist | 15 MB, 20.000 canali, pagine da 40 |
 | Guida | XMLTV/gzip, cache locale di 6 ore, aggiornamento in background |
 | Telecomando | Server HTTP locale sulla TV, porta 8768, codice e token persistenti |
-| Pacchetto | Un `.ipk` con app e servizio; nessun server esterno da installare |
+| Pacchetti | LG `.ipk` con servizio Luna; Samsung `.wgt` con servizi locali, IndexedDB compresso e server NaCl ARM |
 
-Altri modelli/versioni webOS non sono stati verificati. Codec, risoluzione effettiva, audio e pausa delle dirette dipendono da TV e sorgente. Non sono implementati registrazione, DRM, portali Xtream/Stalker o header personalizzati `EXTVLCOPT`/`KODIPROP`.
+Altri modelli/versioni webOS e Tizen non sono stati verificati. Codec, risoluzione effettiva, audio e pausa delle dirette dipendono da TV e sorgente. Non sono implementati registrazione, DRM, portali Xtream/Stalker o header personalizzati `EXTVLCOPT`/`KODIPROP`.
 
 ## EPG
 
@@ -97,7 +94,7 @@ L'associazione segue ID esatto → ID normalizzato → nome normalizzato. Punti,
 
 Playlist, preferiti, cache EPG e credenziali di abbinamento sono salvati localmente sulla TV; il token browser è conservato nel browser. Il progetto non include telemetria. Le richieste per video, loghi, catalogo e guide raggiungono i rispettivi fornitori. Il telecomando usa HTTP ed è destinato alla rete domestica: non esporre la porta su Internet.
 
-Padel IPTV è un progetto indipendente, non affiliato a LG, Red Bull o alle emittenti citate. La sezione padel dipende dai servizi Red Bull TV e dalla disponibilità territoriale dei contenuti; non aggira account, DRM o restrizioni. Non contiene stream IPTV precaricati.
+Padel IPTV è un progetto indipendente, non affiliato a LG, Samsung, Red Bull o alle emittenti citate. La sezione padel dipende dai servizi Red Bull TV e dalla disponibilità territoriale dei contenuti; non aggira account, DRM o restrizioni. Non contiene stream IPTV precaricati.
 
 ## Sorgenti e licenza
 
