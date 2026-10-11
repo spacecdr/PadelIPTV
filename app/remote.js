@@ -2,7 +2,7 @@
 'use strict';
 var service='luna://it.pepis.padel.tv.remote/',subscription=null,statusBridge=null,retry=null,connected=false,revokeBridge=null,revokePending=false;
 var panel=document.getElementById('remote-panel'),button=document.getElementById('remote-open'),close=document.getElementById('remote-close'),revoke=document.getElementById('remote-revoke');
-var keys={up:38,down:40,left:37,right:39,ok:13,back:461,pause:10252,audio:405,rewind:412,forward:417,favorite:406};
+var keys={up:38,down:40,left:37,right:39,ok:13,back:461,pause:10252,audio:405,rewind:412,forward:417,favorite:406,channelUp:427,channelDown:428};
 window.padelRemote={info:{}};
 function update(d){window.padelRemote.info=d;if(d.pin)document.getElementById('remote-pin').textContent=d.pin;if(d.urls&&d.urls.length)document.getElementById('remote-address').textContent=d.urls.join(' oppure ');document.getElementById('remote-state').textContent=d.ready?'Apri questo indirizzo sul telefono, nella stessa rete Wi-Fi.':d.error||'Avvio telecomando…';}
 function hide(){panel.style.display='none';(AppShell.screen==='iptv'?document.getElementById('iptv-home'):button).focus();}

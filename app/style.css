@@ -15,3 +15,5 @@ main{padding:45px 65px 35px}header{height:140px;display:flex;align-items:center;
 #iptv-search-panel{display:flex;align-items:center}#iptv-search-panel input{flex:1;min-width:0;width:auto}#iptv-search-panel button{margin-left:12px}#iptv-search-toggle{max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 #play-pause-button{margin-left:12px;min-width:150px}.hud-bottom small{margin-left:18px}
+
+.hud-bottom #audio-button,.hud-bottom #play-pause-button{box-sizing:border-box;width:250px;height:64px;min-width:250px;flex:0 0 250px;font-size:24px;padding:10px 20px;margin:0 12px 0 0;border-color:#b9ed67}

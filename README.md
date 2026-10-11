@@ -12,7 +12,7 @@ App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie pl
 ## Cosa puoi fare
 
 - **IPTV:** gruppi/bouquet, ricerca, canali preferiti, bouquet preferiti in cima alla lista e ultimo canale.
-- **Durante la visione:** zapping con sinistra/destra; freccia su apre una lista trasparente sopra il video, senza interromperlo.
+- **Durante la visione:** zapping con CH+/CH− (Samsung e telecomando web; su LG frecce solo con info nascoste); freccia su apre una lista trasparente sopra il video, senza interromperlo.
 - **Loghi e guida TV:** logo del canale, programma attuale e successivo, orari e avanzamento in un pannello leggibile che scompare automaticamente.
 - **Padel:** ultimi 10 tornei disponibili, ordinati dal più recente; video on demand, dirette e sessioni imminenti del torneo selezionato.
 - **Audio:** scelta della lingua tra le tracce rese disponibili dallo stream; preferenza salvata.
@@ -57,12 +57,14 @@ La release parte senza playlist. [examples/digitale-terrestre.m3u](examples/digi
 | Contesto | Tasto | Azione |
 |---|---|---|
 | Menu e cataloghi | Frecce / OK | Naviga / seleziona |
-| IPTV in riproduzione | Sinistra / destra | Canale precedente / successivo nella selezione corrente |
+| IPTV Samsung / telecomando web | CH− / CH+ | Canale precedente / successivo nella lista di avvio |
+| IPTV LG, info nascoste | Sinistra / destra | Canale precedente / successivo |
+| Lista canali sovrapposta | Sinistra / destra | Bouquet precedente / successivo, secondo l’ordine del catalogo |
 | IPTV in riproduzione | Su | Mostra la lista trasparente |
 | Lista sovrapposta | Su / giù / OK | Scegli e avvia un canale |
 | Lista sovrapposta | Back | Chiude solo la lista e mantiene il video |
 | IPTV in riproduzione | Giù | Ultimi 5 canali, dal più recente, senza duplicati |
-| IPTV in riproduzione | OK | Mostra info e seleziona i pulsanti Lingua / Pausa-Riprendi |
+| IPTV in riproduzione | OK | Mostra info e seleziona i pulsanti Traccia Audio / Pausa-Riprendi |
 | Info IPTV | Sinistra / destra, OK | Scegli e attiva il pulsante |
 | Player padel | Giù / giallo | Lingua audio |
 | Player padel | OK | Pausa/riprendi, se supportato dallo stream |
@@ -108,3 +110,5 @@ Vedi [DEVELOPMENT.md](DEVELOPMENT.md) per build, test e architettura. Codice del
 Ricerca IPTV apribile dal pulsante **Cerca**: Chiudi/Back nascondono il campo mantenendo il filtro indicato sul pulsante, Azzera lo rimuove. Su Samsung archivio nativo con migrazione dei dati esistenti per risolvere la quota IndexedDB nei salvataggi dei preferiti. La release 0.6.1 collegata sopra non contiene ancora queste modifiche.
 
 Player IPTV locale successivo alla 0.6.1: OK apre i controlli nelle info; lingua e pausa/riprendi sono pulsanti cliccabili affiancati. Giù apre gli ultimi cinque canali selezionati, compreso quello corrente, salvati sulla TV in ordine di utilizzo senza duplicati. Su mantiene la lista canali. Padel invariato.
+
+Navigazione IPTV locale aggiornata: Preferiti, bouquet preferiti, Tutti i canali, altri bouquet; stesso ordine nel catalogo e nell’overlay. L’overlay riparte dalla selezione usata per avviare il canale. Le frecce nelle info selezionano sempre i pulsanti, senza zapping; Traccia Audio mostra la selezione solo nel pannello tracce. CH+/CH− disponibili su Samsung e nel telecomando web. Su LG resta lo zapping con le frecce a info nascoste perché i [tasti canale fisici non sono esposti alle app webOS](https://webostv.developer.lge.com/develop/guides/magic-remote).

@@ -3,7 +3,7 @@ var http=require('http'),crypto=require('crypto'),fs=require('fs'),path=require(
 module.exports=function(options){
  var credentials=options.credentials||require('./auth-store').create(),pin=credentials.pin,token=credentials.token;
  var attempts={},html=fs.readFileSync(path.join(__dirname,'remote.html')),revoking=false;
- var allowed=['up','down','left','right','ok','back','pause','audio','rewind','forward','favorite'];
+ var allowed=['up','down','left','right','ok','back','pause','audio','rewind','forward','favorite','channelUp','channelDown'];
  function send(res,code,obj){res.writeHead(code,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(obj));}
  var server=http.createServer(function(req,res){
   if(req.method==='GET'&&req.url==='/'){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Frame-Options':'DENY','X-Content-Type-Options':'nosniff'});res.end(html);return;}
