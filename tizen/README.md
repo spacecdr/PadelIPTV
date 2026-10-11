@@ -1,6 +1,6 @@
 # Padel IPTV per Samsung Tizen
 
-Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.4** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
+Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.5** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
 
 ## Funzioni
 
@@ -70,3 +70,5 @@ TV reale: catalogo 10 tornei, live padel e pausa/riprendi; playlist via HTTPS co
 Correzione bouquet (10 ottobre 2026): eliminata la doppia scrittura della playlist nei salvataggi temporanei, aggiunto il privilegio Tizen unlimitedstorage e compressione dei record grandi in Worker. Il dispositivo aveva restituito QuotaExceededError. Verificati più bouquet contemporanei e persistenza alla riapertura; test automatico verifica che un commit fallito conservi il dato precedente.
 
 Su Tizen 4 il campo Width/Height del video corrente può restare quello iniziale durante HLS adattivo. Il badge usa il Bit_rate corrente per trovare una corrispondenza esatta e univoca tra le risoluzioni di getTotalTrackInfo; nessuna stima della risoluzione dal bitrate. Si aggiorna anche agli [eventi AVPlay di cambio bitrate/risoluzione](https://developer.samsung.com/smarttv/develop/api-references/samsung-product-api-references/avplay-api.html).
+
+Il monitoraggio della qualità esegue al massimo una query AVPlay al secondo, differita fuori dai callback nativi. Le varianti vengono indicizzate una volta per riproduzione; chiusura e cambio video cancellano i timer pendenti.
