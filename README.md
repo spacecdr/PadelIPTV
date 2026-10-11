@@ -61,8 +61,11 @@ La release parte senza playlist. [examples/digitale-terrestre.m3u](examples/digi
 | IPTV in riproduzione | Su | Mostra la lista trasparente |
 | Lista sovrapposta | Su / giù / OK | Scegli e avvia un canale |
 | Lista sovrapposta | Back | Chiude solo la lista e mantiene il video |
-| Player | Giù / giallo | Lingua audio |
-| Player | OK | Pausa/riprendi, se supportato dallo stream |
+| IPTV in riproduzione | Giù | Ultimi 5 canali, dal più recente, senza duplicati |
+| IPTV in riproduzione | OK | Mostra info e seleziona i pulsanti Lingua / Pausa-Riprendi |
+| Info IPTV | Sinistra / destra, OK | Scegli e attiva il pulsante |
+| Player padel | Giù / giallo | Lingua audio |
+| Player padel | OK | Pausa/riprendi, se supportato dallo stream |
 | Player | Back | Torna al catalogo |
 | Replay padel | Sinistra / destra | Salta indietro / avanti di 30 secondi |
 | IPTV | Blu | Preferito |
@@ -103,3 +106,5 @@ Vedi [DEVELOPMENT.md](DEVELOPMENT.md) per build, test e architettura. Codice del
 ### Modifiche locali successive alla 0.6.1
 
 Ricerca IPTV apribile dal pulsante **Cerca**: Chiudi/Back nascondono il campo mantenendo il filtro indicato sul pulsante, Azzera lo rimuove. Su Samsung archivio nativo con migrazione dei dati esistenti per risolvere la quota IndexedDB nei salvataggi dei preferiti. La release 0.6.1 collegata sopra non contiene ancora queste modifiche.
+
+Player IPTV locale successivo alla 0.6.1: OK apre i controlli nelle info; lingua e pausa/riprendi sono pulsanti cliccabili affiancati. Giù apre gli ultimi cinque canali selezionati, compreso quello corrente, salvati sulla TV in ordine di utilizzo senza duplicati. Su mantiene la lista canali. Padel invariato.
