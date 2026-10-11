@@ -3,7 +3,7 @@
 <p align="center">I tuoi canali. Il tuo padel. Sulla stessa TV.</p>
 <p align="center"><a href="https://spacecdr.github.io/PadelIPTV/">Presentazione</a> · <a href="https://github.com/spacecdr/PadelIPTV/releases/latest">Download webOS / Tizen</a> · <a href="DEVELOPMENT.md">Sviluppo</a></p>
 
-App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.2**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
+App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.3**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
 
 **Samsung:** verificata su UE55NU7400/Tizen 4.0. Il WGT include il modulo ARM del telecomando e la correzione dei preferiti bouquet; richiede firma con certificati propri e DUID della TV. Non è un pacchetto universale per tutte le Samsung.
 
@@ -43,8 +43,8 @@ La [guida completa all’installazione](INSTALLAZIONE.md) descrive requisiti, ac
 
 | TV | File nella release | Preparazione |
 |---|---|---|
-| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.2_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
-| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.2-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
+| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.3_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
+| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.3-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
 
 [Scarica la release](https://github.com/spacecdr/PadelIPTV/releases/latest). Il WGT è già compilato ma **non firmato**: contiene anche il server nativo ARM, senza certificati personali. Non occorre compilare C++ o installare una VM per usarlo. Il supporto NaCl necessario su Samsung limita la compatibilità; TV recenti non collaudate.
 
@@ -70,16 +70,18 @@ La release parte senza playlist. [examples/digitale-terrestre.m3u](examples/digi
 | Lista sovrapposta | Su / giù / OK | Scegli e avvia un canale |
 | Lista sovrapposta | Back | Chiude solo la lista e mantiene il video |
 | IPTV in riproduzione | Giù | Ultimi 5 canali, dal più recente, senza duplicati |
-| IPTV in riproduzione | OK | Mostra info e seleziona i pulsanti Traccia Audio / Pausa-Riprendi |
-| Info IPTV | Sinistra / destra, OK | Scegli e attiva il pulsante |
+| IPTV e Padel in riproduzione | OK | Mostra info e seleziona i pulsanti Traccia Audio / Pausa-Riprendi |
+| Info IPTV e Padel | Sinistra / destra, OK | Scegli e attiva il pulsante |
 | Player padel | Giù / giallo | Lingua audio |
-| Player padel | OK | Pausa/riprendi, se supportato dallo stream |
-| Player | Back | Torna al catalogo |
+| Player padel, info nascoste | Sinistra / destra | Indietro / avanti di 30 secondi nei replay |
+| Player | Back | Chiude prima tracce/info, poi torna al catalogo |
 | Replay padel | Sinistra / destra | Salta indietro / avanti di 30 secondi |
 | IPTV | Blu | Preferito |
 | Telecomando browser | Frecce / Invio / Backspace o Esc | Navigazione / OK / Indietro |
 
 I bouquet seguono l’ordine Preferiti → bouquet preferiti → Tutti i canali → altri bouquet, anche durante il video. L’overlay riparte dalla lista usata per avviare il canale. Su LG lo zapping con le frecce è attivo solo con info nascoste: i [tasti CH fisici non sono esposti alle app webOS](https://webostv.developer.lge.com/develop/guides/magic-remote). CH+/CH− sono comunque disponibili nel telecomando web.
+
+La lingua scelta viene ricordata e applicata quando disponibile, anche se lo stream usa codici equivalenti come `it`/`ita`. Il badge risoluzione segue le dimensioni del video in riproduzione, con controllo ogni secondo anche durante i cambi di qualità adattiva.
 
 ## Specifiche e compatibilità
 

@@ -1,6 +1,6 @@
 # Padel IPTV per Samsung Tizen
 
-Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.2** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
+Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.3** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
 
 ## Funzioni
 
