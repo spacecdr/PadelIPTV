@@ -1,12 +1,12 @@
 # Padel IPTV per Samsung Tizen
 
-Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.3** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
+Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.4** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
 
 ## Funzioni
 
 Home IPTV/Padel, catalogo pubblico degli ultimi 10 tornei, AVPlay per video e tracce audio, playlist M3U, gruppi/bouquet e preferiti, zapping CH+/CH−, lista trasparente con Su, loghi, EPG attuale/successivo e telecomando web sulla porta **8768**. Tutti i servizi vengono eseguiti sulla TV: non serve un Mac o server esterno acceso. Il telecomando è disponibile mentre l'app rimane aperta.
 
-La playlist parte vuota. Si può inserire o modificare direttamente da **IPTV → Playlist**, con tastiera a schermo e Salva e carica. Per usare il browser, aprire **Telecomando e playlist** sulla Home e visitare dal telefono/computer l'indirizzo mostrato, sulla stessa rete. Il codice di abbinamento e i token sono persistenti; Revoca dispositivi li sostituisce. Il browser accetta frecce, Invio e Backspace/Esc, con ripetizione nelle liste. Inserire l'URL M3U nel telecomando; link HTTP/HTTPS senza estensione sono accettati. Una lista vuota o errata non sostituisce quella salvata.
+La playlist parte vuota. Si può inserire o modificare direttamente da **IPTV → Playlist**, con tastiera a schermo e Salva e carica. Per usare il browser, aprire **Telecomando** sulla Home e visitare dal telefono/computer l'indirizzo mostrato, sulla stessa rete. Il codice di abbinamento e i token sono persistenti; Revoca dispositivi li sostituisce. Il browser accetta frecce, Invio e Backspace/Esc, con ripetizione nelle liste. Inserire l'URL M3U nel telecomando; link HTTP/HTTPS senza estensione sono accettati. Una lista vuota o errata non sostituisce quella salvata.
 
 ## Architettura
 
@@ -68,3 +68,5 @@ TV reale: catalogo 10 tornei, live padel e pausa/riprendi; playlist via HTTPS co
 - [Certificati Samsung](https://developer.samsung.com/smarttv/develop/getting-started/setting-up-sdk/creating-certificates.html)
 
 Correzione bouquet (10 ottobre 2026): eliminata la doppia scrittura della playlist nei salvataggi temporanei, aggiunto il privilegio Tizen unlimitedstorage e compressione dei record grandi in Worker. Il dispositivo aveva restituito QuotaExceededError. Verificati più bouquet contemporanei e persistenza alla riapertura; test automatico verifica che un commit fallito conservi il dato precedente.
+
+Su Tizen 4 il campo Width/Height del video corrente può restare quello iniziale durante HLS adattivo. Il badge usa il Bit_rate corrente per trovare una corrispondenza esatta e univoca tra le risoluzioni di getTotalTrackInfo; nessuna stima della risoluzione dal bitrate. Si aggiorna anche agli [eventi AVPlay di cambio bitrate/risoluzione](https://developer.samsung.com/smarttv/develop/api-references/samsung-product-api-references/avplay-api.html).
