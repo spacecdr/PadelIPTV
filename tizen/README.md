@@ -1,18 +1,18 @@
 # Padel IPTV per Samsung Tizen
 
-Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.1** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
+Porting installato e verificato su **Samsung UE55NU7400 (2018), Tizen 4.0 / Chromium 56**, il 10 ottobre 2026. Disponibile nella release **0.6.2** insieme al pacchetto webOS. Per installare il WGT precompilato, seguire [INSTALLAZIONE.md](../INSTALLAZIONE.md#samsung-tizen): non serve ricompilare il modulo nativo.
 
 ## Funzioni
 
-Home IPTV/Padel, catalogo pubblico degli ultimi 10 tornei, AVPlay per video e tracce audio, playlist M3U, gruppi/bouquet e preferiti, zapping sinistra/destra, lista trasparente con Su, loghi, EPG attuale/successivo e telecomando web sulla porta **8768**. Tutti i servizi vengono eseguiti sulla TV: non serve un Mac o server esterno acceso. Il telecomando è disponibile mentre l'app rimane aperta.
+Home IPTV/Padel, catalogo pubblico degli ultimi 10 tornei, AVPlay per video e tracce audio, playlist M3U, gruppi/bouquet e preferiti, zapping CH+/CH−, lista trasparente con Su, loghi, EPG attuale/successivo e telecomando web sulla porta **8768**. Tutti i servizi vengono eseguiti sulla TV: non serve un Mac o server esterno acceso. Il telecomando è disponibile mentre l'app rimane aperta.
 
-La playlist parte vuota. Aprire **Telecomando e playlist** sulla Home e visitare dal telefono/computer l'indirizzo mostrato, sulla stessa rete. Il codice di abbinamento e i token sono persistenti; Revoca dispositivi li sostituisce. Il browser accetta frecce, Invio e Backspace/Esc, con ripetizione nelle liste. Inserire l'URL M3U nel telecomando; link HTTP/HTTPS senza estensione sono accettati. Una lista vuota o errata non sostituisce quella salvata.
+La playlist parte vuota. Si può inserire o modificare direttamente da **IPTV → Playlist**, con tastiera a schermo e Salva e carica. Per usare il browser, aprire **Telecomando e playlist** sulla Home e visitare dal telefono/computer l'indirizzo mostrato, sulla stessa rete. Il codice di abbinamento e i token sono persistenti; Revoca dispositivi li sostituisce. Il browser accetta frecce, Invio e Backspace/Esc, con ripetizione nelle liste. Inserire l'URL M3U nel telecomando; link HTTP/HTTPS senza estensione sono accettati. Una lista vuota o errata non sostituisce quella salvata.
 
 ## Architettura
 
 - Interfaccia e regole dei servizi condivise con webOS; `app/` e `service/` restano invariati.
 - `avplay-media.js`: adattatore AVPlay; `platform.js`: Back Samsung 10009, registrazione tasti e screensaver.
-- `storage-native.js`: nella versione in sviluppo successiva alla 0.6.1, archivio nativo `wgt-private` con due record alternati e verifica della scrittura; recupera la copia precedente se un salvataggio viene interrotto. Migra automaticamente da IndexedDB senza cancellarlo, preservando playlist, preferiti e abbinamenti. Richiede privilegi filesystem.read/write.
+- `storage-native.js`: dalla versione 0.6.2, archivio nativo `wgt-private` con due record alternati e verifica della scrittura; recupera la copia precedente se un salvataggio viene interrotto. Migra automaticamente da IndexedDB senza cancellarlo, preservando playlist, preferiti e abbinamenti. Richiede privilegi filesystem.read/write.
 - `storage.js` e `storage-worker.js`: lettura del precedente archivio IndexedDB compresso e backend per i test browser; nella release 0.6.1 erano il backend principale.
 - `bundle-tizen.cjs`: include parser M3U, servizio playlist, matcher XMLTV e cache EPG originali, adattando filesystem, URL, hash e download.
 - `epg-worker.js`: download gzip/XMLTV, decompressione pako e SAX fuori dal thread UI. Limiti 32 MiB compressi / 128 MiB XML; cache 6 ore e fallback come webOS.

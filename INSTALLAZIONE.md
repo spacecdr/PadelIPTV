@@ -1,6 +1,6 @@
 # Installare Padel IPTV — webOS e Tizen
 
-Versione 0.6.1. Scaricare i file dalla [release ufficiale](https://github.com/spacecdr/PadelIPTV/releases/latest). Non è un'app degli store LG/Samsung: si installa in modalità sviluppatore.
+Versione 0.6.2. Scaricare i file dalla [release ufficiale](https://github.com/spacecdr/PadelIPTV/releases/latest). Non è un'app degli store LG/Samsung: si installa in modalità sviluppatore.
 
 ## Prima di iniziare
 
@@ -46,7 +46,7 @@ Inserire la passphrase mostrata da Developer Mode. Vedere la [procedura LG](http
 Aprire il terminale nella cartella del file scaricato:
 
 ```sh
-ares-install --device miaTV it.pepis.padel.tv_0.6.1_all.ipk
+ares-install --device miaTV it.pepis.padel.tv_0.6.2_all.ipk
 ares-launch --device miaTV it.pepis.padel.tv
 ```
 
@@ -85,11 +85,11 @@ Il DUID non è l'IP né il nome commerciale della TV. Il certificato di un'altra
 
 ### 4. Firmare il compilato scaricato
 
-Scaricare `PadelIPTV-0.6.1-tizen-arm-unsigned.wgt`. È un archivio ZIP con app e server ARM pronti, **non installabile finché non è firmato**. Estrarlo con un gestore ZIP (su Windows si può copiare/rinominare il file in `.zip`), oppure:
+Scaricare `PadelIPTV-0.6.2-tizen-arm-unsigned.wgt`. È un archivio ZIP con app e server ARM pronti, **non installabile finché non è firmato**. Estrarlo con un gestore ZIP (su Windows si può copiare/rinominare il file in `.zip`), oppure:
 
 ```sh
 mkdir -p "$HOME/PadelIPTV-install/app" "$HOME/PadelIPTV-install/signed"
-unzip PadelIPTV-0.6.1-tizen-arm-unsigned.wgt -d "$HOME/PadelIPTV-install/app"
+unzip PadelIPTV-0.6.2-tizen-arm-unsigned.wgt -d "$HOME/PadelIPTV-install/app"
 tizen build-web -- "$HOME/PadelIPTV-install/app"
 tizen package -t wgt -s PROFILO_SAMSUNG -o "$HOME/PadelIPTV-install/signed" -- "$HOME/PadelIPTV-install/app/.buildResult"
 ```
@@ -109,7 +109,9 @@ In alternativa, Device Manager offre **Permit to install applications** sul disp
 
 ## Primo utilizzo, comune alle due TV
 
-Aprire **Telecomando e playlist** nella Home. Visitare dal telefono/computer l'indirizzo mostrato dalla TV (`http://IP_TV:8768`), inserire il codice e caricare l'URL HTTP/HTTPS della propria M3U, anche senza estensione. Il codice e l'abbinamento vengono conservati; **Revoca dispositivi** li sostituisce. L'app deve restare aperta per usare il telecomando. Il computer può essere spento dopo l'installazione.
+**Senza telefono o computer:** aprire IPTV e premere **Playlist** (oppure **Carica playlist sulla TV** se non ci sono canali). Inserire l’URL M3U con la tastiera a schermo, quindi **Salva e carica**. Per modificarlo, riaprire lo stesso pannello: l’indirizzo salvato è già compilato. Con le frecce verticali si passa dal campo ai pulsanti; Chiudi/Back torna al catalogo. Durante il download attendere l’esito; se la lista è vuota o non valida resta quella precedente. La lettura dell’URL salvato avviene nell’app, senza esporlo nelle API di stato del telecomando.
+
+**Dal browser (facoltativo):** Aprire **Telecomando e playlist** nella Home. Visitare dal telefono/computer l'indirizzo mostrato dalla TV (`http://IP_TV:8768`), inserire il codice e caricare l'URL HTTP/HTTPS della propria M3U, anche senza estensione. Il codice e l'abbinamento vengono conservati; **Revoca dispositivi** li sostituisce. L'app deve restare aperta per usare il telecomando. Il computer può essere spento dopo l'installazione.
 
 Nessun canale IPTV è precaricato. La [M3U di esempio](examples/digitale-terrestre.m3u) contiene URL non riproducibili. Le guide EPG vengono scaricate automaticamente; associazione e copertura dipendono dalla sorgente. I contenuti padel dipendono da Red Bull TV e dalla disponibilità territoriale. Per i tasti vedere [README](README.md#comandi).
 
@@ -124,7 +126,7 @@ Nessun canale IPTV è precaricato. La [M3U di esempio](examples/digitale-terrest
 | Samsung: errore 118012 | Eseguire install-permit/Permit to install applications; controllare comunque certificati e collegamento |
 | Samsung: file non installabile | Non usare direttamente l'unsigned WGT; firmare e rinominare senza spazi |
 | Telecomando non raggiungibile | App aperta, indirizzo mostrato dalla TV, HTTP e porta 8768; su Tizen serve supporto NaCl ARM |
-| Lista non salvata / errore spazio | Usare 0.6.1 (fix bouquet Samsung), controllare spazio TV; non cancellare dati senza conservarne la configurazione |
+| Lista non salvata / errore spazio | Usare 0.6.2 (archivio nativo Samsung, senza la quota IndexedDB per i nuovi salvataggi), controllare spazio TV; non cancellare dati senza conservarne la configurazione |
 | Canale senza video/EPG | Provare una sorgente compatibile e consultare lo stato EPG nel telecomando: il matching non garantisce programmi attuali |
 
 Non aprire la porta 8768 su Internet: il telecomando HTTP è pensato per la rete locale. I pacchetti non sono aggiornati automaticamente; controllare le nuove release su GitHub.

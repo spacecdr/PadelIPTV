@@ -2,7 +2,8 @@
 var iptv=TizenRequire('./iptv')('playlist.json',changed),epg=TizenRequire('./epg')('guide.json',function(){return iptv.allChannels();},function(){if(window.TVGuide)TVGuide.updated();});
 function changed(){epg.invalidate();if(window.iptvUI)iptvUI.changed();}
 window.TVService=function(method,p){p=p||{};return new Promise(function(resolve,reject){function done(e,d){if(e)reject(e);else resolve(d);}try{var c;
-if(method==='meta')resolve(iptv.meta());
+if(method==='playlistConfig')resolve(iptv.playlistConfig());
+else if(method==='meta')resolve(iptv.meta());
 else if(method==='groups')resolve(iptv.groups(p.offset));
 else if(method==='list')resolve(iptv.query(p));
 else if(method==='channel'){c=iptv.channel(p.id);if(!c)throw Error('Canale non trovato');resolve(c);}
