@@ -99,3 +99,7 @@ Padel IPTV è un progetto indipendente, non affiliato a LG, Samsung, Red Bull o 
 ## Sorgenti e licenza
 
 Vedi [DEVELOPMENT.md](DEVELOPMENT.md) per build, test e architettura. Codice del progetto sotto [GPL-3.0-only](LICENSE), coerente con il matcher derivato da [MacIPTV](https://github.com/spacecdr/MacIPTV). Componenti e licenze di terze parti in [THIRD_PARTY.md](THIRD_PARTY.md).
+
+### Modifiche locali successive alla 0.6.1
+
+Ricerca IPTV apribile dal pulsante **Cerca**: Chiudi/Back nascondono il campo mantenendo il filtro indicato sul pulsante, Azzera lo rimuove. Su Samsung archivio nativo con migrazione dei dati esistenti per risolvere la quota IndexedDB nei salvataggi dei preferiti. La release 0.6.1 collegata sopra non contiene ancora queste modifiche.

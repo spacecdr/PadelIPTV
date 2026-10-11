@@ -10,7 +10,7 @@
     "screenshots": "node tools/screenshots.cjs",
     "screenshots:padel": "node tools/screenshots-padel.cjs",
     "build:tizen": "node tools/build-tizen.cjs",
-    "test:tizen": "node tests/tizen/avplay.test.cjs && node tests/tizen/browser.cjs && node tests/tizen/services.cjs && node tests/tizen/remote.cjs"
+    "test:tizen": "node tests/tizen/storage-native.cjs && node tests/tizen/avplay.test.cjs && node tests/tizen/browser.cjs && node tests/tizen/services.cjs && node tests/tizen/remote.cjs"
   },
   "devDependencies": {
     "js-sha1": "^0.7.0",

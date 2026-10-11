@@ -12,7 +12,8 @@ La playlist parte vuota. Aprire **Telecomando e playlist** sulla Home e visitare
 
 - Interfaccia e regole dei servizi condivise con webOS; `app/` e `service/` restano invariati.
 - `avplay-media.js`: adattatore AVPlay; `platform.js`: Back Samsung 10009, registrazione tasti e screensaver.
-- `storage.js` e `storage-worker.js`: archivio locale IndexedDB compresso con sostituzione atomica in una sola transazione; lettura compatibile con i dati precedenti non compressi; playlist, preferiti, guida e abbinamento appartengono a questa app Samsung.
+- `storage-native.js`: nella versione in sviluppo successiva alla 0.6.1, archivio nativo `wgt-private` con due record alternati e verifica della scrittura; recupera la copia precedente se un salvataggio viene interrotto. Migra automaticamente da IndexedDB senza cancellarlo, preservando playlist, preferiti e abbinamenti. Richiede privilegi filesystem.read/write.
+- `storage.js` e `storage-worker.js`: lettura del precedente archivio IndexedDB compresso e backend per i test browser; nella release 0.6.1 erano il backend principale.
 - `bundle-tizen.cjs`: include parser M3U, servizio playlist, matcher XMLTV e cache EPG originali, adattando filesystem, URL, hash e download.
 - `epg-worker.js`: download gzip/XMLTV, decompressione pako e SAX fuori dal thread UI. Limiti 32 MiB compressi / 128 MiB XML; cache 6 ore e fallback come webOS.
 - `native/remote.cc`: trasporto HTTP via Pepper TCPSocket, ARM NaCl. Massimo 8 connessioni, limiti header/body, scadenze, scritture parziali e chiusura dopo risposta. Nessuna esecuzione di comandi di sistema.
