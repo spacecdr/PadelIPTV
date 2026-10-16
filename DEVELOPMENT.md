@@ -11,7 +11,7 @@ npm run test:remote
 npm run build
 ```
 
-Il risultato è `dist/it.pepis.padel.tv_0.6.5_all.ipk`. Il comando sottostante è `ares-package app service --outdir dist`: includere sempre entrambe le directory. Node/npm non sono necessari sulla TV per installare l'IPK.
+Il risultato è `dist/it.pepis.padel.tv_0.6.6_all.ipk`. Il comando sottostante è `ares-package app service --outdir dist`: includere sempre entrambe le directory. Node/npm non sono necessari sulla TV per installare l'IPK.
 
 Per verificare l'interfaccia IPTV con dati sintetici, in un terminale eseguire `python3 -m http.server 8769 --bind 127.0.0.1 --directory app`, poi `node tests/iptv-browser.cjs`. Per una porta diversa impostare `APP_URL=http://127.0.0.1:PORTA`. Il test non contatta una TV. I test unitari coprono parser M3U, persistenza, gruppi/preferiti/zapping, matcher XMLTV, gzip, fallback/cache e sicurezza del telecomando. `npm run screenshots` avvia un proprio server temporaneo e genera le immagini demo Home/IPTV/telecomando in `docs/assets`; usa solo fixture. `npm run screenshots:padel` acquisisce invece il catalogo pubblico reale Red Bull TV (torneo corrente e precedente), senza collegarsi alla TV o caricare una playlist. Richiede Internet e riflette i contenuti disponibili al momento.
 

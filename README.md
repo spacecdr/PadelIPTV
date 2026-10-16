@@ -3,7 +3,7 @@
 <p align="center">I tuoi canali. Il tuo padel. Sulla stessa TV.</p>
 <p align="center"><a href="https://spacecdr.github.io/PadelIPTV/">Presentazione</a> · <a href="https://github.com/spacecdr/PadelIPTV/releases/latest">Download webOS / Tizen</a> · <a href="DEVELOPMENT.md">Sviluppo</a></p>
 
-App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.5**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
+App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.6**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
 
 **Samsung:** verificata su UE55NU7400/Tizen 4.0. Il WGT include il modulo ARM del telecomando e la correzione dei preferiti bouquet; richiede firma con certificati propri e DUID della TV. Non è un pacchetto universale per tutte le Samsung.
 
@@ -43,8 +43,8 @@ La [guida completa all’installazione](INSTALLAZIONE.md) descrive requisiti, ac
 
 | TV | File nella release | Preparazione |
 |---|---|---|
-| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.5_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
-| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.5-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
+| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.6_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
+| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.6-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
 
 [Scarica la release](https://github.com/spacecdr/PadelIPTV/releases/latest). Il WGT è già compilato ma **non firmato**: contiene anche il server nativo ARM, senza certificati personali. Non occorre compilare C++ o installare una VM per usarlo. Il supporto NaCl necessario su Samsung limita la compatibilità; TV recenti non collaudate.
 
