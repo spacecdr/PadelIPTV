@@ -11,7 +11,7 @@ npm run test:remote
 npm run build
 ```
 
-Il risultato è `dist/it.pepis.padel.tv_0.6.7_all.ipk`. Il comando sottostante è `ares-package app service --outdir dist`: includere sempre entrambe le directory. Node/npm non sono necessari sulla TV per installare l'IPK.
+Il risultato è `dist/it.pepis.padel.tv_0.6.8_all.ipk`. Il comando sottostante è `ares-package app service --outdir dist`: includere sempre entrambe le directory. Node/npm non sono necessari sulla TV per installare l'IPK.
 
 Per verificare l'interfaccia IPTV con dati sintetici, in un terminale eseguire `python3 -m http.server 8769 --bind 127.0.0.1 --directory app`, poi `node tests/iptv-browser.cjs`. Per una porta diversa impostare `APP_URL=http://127.0.0.1:PORTA`. Il test non contatta una TV. I test unitari coprono parser M3U, persistenza, gruppi/preferiti/zapping, matcher XMLTV, gzip, fallback/cache e sicurezza del telecomando. `npm run screenshots` avvia un proprio server temporaneo e genera le immagini demo Home/IPTV/telecomando in `docs/assets`; usa solo fixture. `npm run screenshots:padel` acquisisce invece il catalogo pubblico reale Red Bull TV (torneo corrente e precedente), senza collegarsi alla TV o caricare una playlist. Richiede Internet e riflette i contenuti disponibili al momento.
 
@@ -47,8 +47,14 @@ Il pannello `app/playlist-ui.js` usa `iptv/playlistConfig` e `iptv/update` via L
 
 Il test AVPlay include una simulazione di dieci minuti con eventi frequenti: le letture periodiche devono restare al massimo una al secondo, l’indice delle varianti viene costruito una sola volta e nessuna query periodica rientra nei callback nativi. La simulazione verifica questi vincoli; non sostituisce un collaudo prolungato sul televisore.
 
-## Avanzamento Padel (0.6.7)
+## Avanzamento Padel (incluso nella release consolidata 0.6.8)
 
 Le ripetizioni Samsung possono arrivare con `repeat=false`: il player limita le richieste nella stessa direzione a una ogni 250 ms e mantiene un obiettivo cumulativo. La pressione continua aumenta il passo da 30 a 120 secondi dopo 5 secondi e a 300 secondi dopo 10 secondi. Keyup, inversione, altri comandi e interruzioni oltre 800 ms azzerano l’accelerazione; i keyup sintetici del telecomando web sono distinti dai rilasci fisici. AVPlay esegue un solo `seekTo` alla volta e conserva solo l’ultima destinazione in attesa; le letture ricorrenti della risoluzione sono sospese durante il seek. Un errore del solo seek non diventa un errore fatale del media. Callback precedenti vengono ignorati dopo stop/cambio sorgente.
 
 La barra di seek è separata dall’HUD: durata per VOD, intervallo `seekable` HTML o `GET_LIVE_DURATION` AVPlay per live, con limite prima della fine dell’intervallo. Non si inventa una durata totale della diretta. Senza DVR mostra LIVE senza seek. Vedere [contratto AVPlay seekTo](https://developer.samsung.com/smarttv/develop/api-references/samsung-product-api-references/avplay-api.html). Test: `tests/player-native.cjs`, `tests/tizen/avplay.test.cjs`, `tests/tizen/browser.cjs`.
+
+## Catalogo YouTube e ripresa Red Bull
+
+`app/youtube-catalog.js` usa Data API v3 con chiave personale; `youtube-ui.js` apre esclusivamente l’app YouTube esterna. Nessun iframe, estrazione stream o endpoint player HTTP. LG usa applicationManager/launch; Tizen getAppsInfo e launchAppControl con ID esplicito YouTube (privilegi application.info/application.launch). La coda monitora solo mentre Padel IPTV è visibile e non interrompe altri player. Test: `npm run test:youtube`.
+
+`app/resume.js` salva fino a50 posizioni locali Red Bull per30giorni; la posizione viene aggiornata ogni15s e in uscita. Dall’inizio cancella il vecchio punto; DVR è limitato alla finestra disponibile. YouTube gestisce autonomamente la propria cronologia.

@@ -3,7 +3,7 @@
 <p align="center">I tuoi canali. Il tuo padel. Sulla stessa TV.</p>
 <p align="center"><a href="https://spacecdr.github.io/PadelIPTV/">Presentazione</a> · <a href="https://github.com/spacecdr/PadelIPTV/releases/latest">Download webOS / Tizen</a> · <a href="DEVELOPMENT.md">Sviluppo</a></p>
 
-App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e catalogo dedicato al padel su Red Bull TV, con telecomando web ospitato direttamente sul televisore. Versione **0.6.7**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
+App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie playlist M3U e cataloghi dedicati al padel su Red Bull TV e YouTube Premier Padel, con telecomando web ospitato direttamente sul televisore. Versione **0.6.8**: `.ipk` per LG e `.wgt` precompilato da firmare per Samsung, installabili in modalità sviluppatore.
 
 **Samsung:** verificata su UE55NU7400/Tizen 4.0. Il WGT include il modulo ARM del telecomando e la correzione dei preferiti bouquet; richiede firma con certificati propri e DUID della TV. Non è un pacchetto universale per tutte le Samsung.
 
@@ -17,6 +17,8 @@ App indipendente per **LG webOS e Samsung Tizen**: player IPTV per le proprie pl
 - **Controlli e cronologia:** OK apre le informazioni con **Traccia Audio**; il tasto **Play/Pause** del telecomando fisico o web controlla la riproduzione; Giù mostra gli ultimi cinque canali senza duplicati; Sinistra/Destra nella lista sovrapposta cambiano bouquet nell’ordine del catalogo. Badge della risoluzione effettiva (HD/FHD/UHD o dimensioni non standard).
 - **Loghi e guida TV:** logo del canale, programma attuale e successivo, orari e avanzamento in un pannello leggibile che scompare automaticamente.
 - **Padel:** ultimi 10 tornei disponibili, ordinati dal più recente; video on demand, dirette e sessioni imminenti del torneo selezionato.
+- **YouTube Premier Padel:** ultimi 20 video, dirette e imminenti, coda automatica con Padel IPTV aperta e apertura dei contenuti esclusivamente nell’app YouTube installata sulla TV. Richiede la propria chiave Data API v3, configurabile dalla TV o dal telecomando web: [istruzioni](YOUTUBE.md).
+- **Riprendi Red Bull TV:** riaprendo un contenuto già visto puoi scegliere il punto salvato, l’inizio o il LIVE quando disponibile.
 - **Audio:** scelta della lingua tra le tracce rese disponibili dallo stream; preferenza salvata.
 - **Telecomando web:** smartphone o computer sulla stessa rete; frecce, Invio e Indietro da tastiera, ripetizione dei cursori nelle liste, caricamento e aggiornamento della playlist.
 - **Abbinamento persistente:** codice iniziale, dispositivi ricordati e revoca dalla TV. Dopo l'installazione non serve lasciare acceso un computer.
@@ -35,6 +37,8 @@ L’interfaccia è condivisa tra le due versioni; queste immagini illustrano la 
 
 ![Caricamento e modifica URL direttamente dalla TV](docs/assets/playlist.png)
 
+![Catalogo YouTube Premier Padel sulla LG, 17 ottobre 2026](docs/assets/youtube.png)
+
 [Telecomando web su smartphone](docs/assets/remote.png)
 
 ## Installazione
@@ -43,8 +47,8 @@ La [guida completa all’installazione](INSTALLAZIONE.md) descrive requisiti, ac
 
 | TV | File nella release | Preparazione |
 |---|---|---|
-| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.7_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
-| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.7-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
+| LG webOS — verificata UM7390PLC, webOS 4.10.2-29 | `it.pepis.padel.tv_0.6.8_all.ipk` | Account LG Developer, app Developer Mode, CLI webOS; app e servizio già inclusi |
+| Samsung Tizen — verificata UE55NU7400, Tizen 4.0 | `PadelIPTV-0.6.8-tizen-arm-unsigned.wgt` | Account Samsung, Tizen Studio con estensioni TV/certificati, firma con il proprio DUID |
 
 [Scarica la release](https://github.com/spacecdr/PadelIPTV/releases/latest). Il WGT è già compilato ma **non firmato**: contiene anche il server nativo ARM, senza certificati personali. Non occorre compilare C++ o installare una VM per usarlo. Il supporto NaCl necessario su Samsung limita la compatibilità; TV recenti non collaudate.
 
@@ -116,3 +120,5 @@ Padel IPTV è un progetto indipendente, non affiliato a LG, Samsung, Red Bull o 
 Vedi [DEVELOPMENT.md](DEVELOPMENT.md) per build, test e architettura. Codice del progetto sotto [GPL-3.0-only](LICENSE), coerente con il matcher derivato da [MacIPTV](https://github.com/spacecdr/MacIPTV). Componenti e licenze di terze parti in [THIRD_PARTY.md](THIRD_PARTY.md).
 
 In Padel TV, a informazioni nascoste, tenere premuta Sinistra/Destra continua a spostarsi nel video senza aprire il menu. La pressione continua passa da salti di 30 secondi a 2 minuti dopo 5 secondi e a 5 minuti dopo 10 secondi; al rilascio riparte da 30 secondi. Una barra separata mostra posizione e durata; nelle dirette con DVR mostra il ritardo dal LIVE e la finestra riavvolgibile disponibile. Senza DVR la diretta non viene spostata.
+
+La voce **Fonti e diritti** è accessibile da entrambe le schede Padel. Accessibilità di un flusso e licenza d’uso non sono equivalenti; YouTube mantiene controlli, pubblicità e restrizioni nella propria app. Vedere [configurazione, diritti e limiti YouTube](YOUTUBE.md).

@@ -7,3 +7,5 @@ private/
 *.wgt
 *.p12
 *.pfx
+.env
+.env.*

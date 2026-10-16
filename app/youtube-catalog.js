@@ -1,0 +1,13 @@
+/* YouTube Data API v3 metadata only. Playback stays in the official player. */
+(function(root){'use strict';
+var channel='UCK59dYVs3Wgwoe73nDTH6jw';
+function unique(ids){return ids.filter(function(id,i){return /^[\w-]{11}$/.test(id)&&ids.indexOf(id)===i;});}
+function normalize(v){var s=v.snippet||{},l=v.liveStreamingDetails||{},t=s.thumbnails||{};if(s.channelId!==channel)return null;return {id:v.id,title:s.title||'YouTube',published:s.publishedAt||'',scheduled:l.scheduledStartTime||'',state:l.actualEndTime?'video':s.liveBroadcastContent==='live'?'live':s.liveBroadcastContent==='upcoming'?'upcoming':'video',image:(t.medium||t.default||{}).url||'',embeddable:!v.status||v.status.embeddable!==false};}
+function create(request){var discovery=null,discovered=0,busy=null;
+ function details(ids){ids=unique(ids);if(!ids.length)return Promise.resolve([]);var batches=[];for(var i=0;i<ids.length;i+=50)batches.push(request('videos',{part:'snippet,liveStreamingDetails,status',id:ids.slice(i,i+50).join(',')}).then(function(d){return (d.items||[]).map(normalize).filter(Boolean);}));return Promise.all(batches).then(function(groups){return [].concat.apply([],groups);});}
+ function load(){if(busy)return busy;var eventTask=discovery&&Date.now()-discovered<3600000?Promise.resolve(discovery):Promise.all(['live','upcoming'].map(function(type){return request('search',{part:'id',channelId:channel,type:'video',eventType:type,maxResults:50}).then(function(d){return (d.items||[]).map(function(v){return v.id.videoId;});});})).then(function(groups){discovery=unique([].concat.apply([],groups));discovered=Date.now();return discovery;});
+ busy=Promise.all([request('playlistItems',{part:'contentDetails',playlistId:'UU'+channel.slice(2),maxResults:50}),eventTask]).then(function(data){return details((data[0].items||[]).map(function(v){return v.contentDetails.videoId;}).concat(data[1]));}).then(function(videos){var events=videos.filter(function(v){return v.state!=='video';}).sort(function(a,b){return (a.state==='live'?0:1)-(b.state==='live'?0:1)||(Date.parse(a.scheduled)||0)-(Date.parse(b.scheduled)||0);});var latest=videos.filter(function(v){return v.state==='video';}).sort(function(a,b){return Date.parse(b.published)-Date.parse(a.published);}).slice(0,20);return {events:events,latest:latest};});var work=busy;work.then(function(){busy=null;},function(){busy=null;});return work;}
+ return {load:load,details:details};
+}
+root.YouTubeCatalog={create:create,normalize:normalize,channel:channel};if(typeof module!=='undefined')module.exports=root.YouTubeCatalog;
+}(typeof window==='undefined'?this:window));

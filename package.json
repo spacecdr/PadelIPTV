@@ -1,10 +1,11 @@
 {
   "name": "padel-iptv",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "private": true,
   "license": "GPL-3.0-only",
   "scripts": {
     "test": "node tests/player-native.cjs && node tests/catalog.test.cjs && node tests/iptv.test.cjs && node tests/iptv-recent.cjs && node tests/epg.test.cjs && node tests/remote.test.cjs && node tests/remote-persistence.cjs",
+    "test:youtube": "node tests/youtube.test.cjs && node tests/youtube-remote.cjs && node tests/youtube-browser.cjs",
     "test:remote": "node tests/remote-keyboard.cjs",
     "build": "ares-package app service --outdir dist",
     "screenshots": "node tools/screenshots.cjs",

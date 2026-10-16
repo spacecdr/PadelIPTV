@@ -15,6 +15,7 @@ module.exports=function(options){
   if(req.headers['x-padel-token']!==token){send(res,401,{error:'Abbina il telefono con il codice sulla TV'});return;}
   if(req.url==='/api/state'&&req.method==='GET'){send(res,200,{connected:options.isActive(),state:options.state()});return;}
   if(req.url==='/api/command'&&req.method==='POST'){body(req,res,function(d){if(allowed.indexOf(d.command)<0){send(res,400,{error:'Comando non valido'});return;}if(!options.isActive()){send(res,409,{error:'Apri Padel IPTV sul televisore'});return;}try{options.command(d.command,d.repeat===true&&['up','down','left','right'].indexOf(d.command)>=0);send(res,200,{ok:true});}catch(e){send(res,503,{error:'TV non disponibile'});}});return;}
+  if(options.youtube&&req.url==='/api/youtube'&&(req.method==='GET'||req.method==='POST')){function ytDone(e,d){send(res,e?400:200,e?{error:e.message}:d);}if(req.method==='GET')options.youtube.status(ytDone);else body(req,res,function(d){options.youtube.set(d.key,ytDone);});return;}
   if(options.iptv&&req.url==='/api/iptv'&&req.method==='GET'){send(res,200,options.iptv.meta());return;}
   if(options.iptv&&req.url==='/api/iptv'&&req.method==='POST'){body(req,res,function(d){options.iptv.update(d.url,function(e,data){send(res,e?400:200,e?{error:e.message}:data);});},8192);return;}
   if(options.iptv&&req.url==='/api/iptv'&&req.method==='DELETE'){options.iptv.remove(function(e,data){send(res,e?400:200,e?{error:e.message}:data);});return;}

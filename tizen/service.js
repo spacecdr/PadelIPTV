@@ -2,7 +2,8 @@
 var iptv=TizenRequire('./iptv')('playlist.json',changed),epg=TizenRequire('./epg')('guide.json',function(){return iptv.allChannels();},function(){if(window.TVGuide)TVGuide.updated();});
 function changed(){epg.invalidate();if(window.iptvUI)iptvUI.changed();}
 window.TVService=function(method,p){p=p||{};return new Promise(function(resolve,reject){function done(e,d){if(e)reject(e);else resolve(d);}try{var c;
-if(method==='playlistConfig')resolve(iptv.playlistConfig());
+if(method==='youtubeConfig'){if(typeof p.key==='string'){if(p.key&&!/^[A-Za-z0-9_-]{20,200}$/.test(p.key))throw Error('Chiave API non valida');localStorage.setItem('padel.youtube.key',p.key);resolve({configured:!!p.key});if(window.YouTubeUI)YouTubeUI.configChanged();}else resolve({key:localStorage.getItem('padel.youtube.key')||'',configured:!!localStorage.getItem('padel.youtube.key')});}
+else if(method==='playlistConfig')resolve(iptv.playlistConfig());
 else if(method==='meta')resolve(iptv.meta());
 else if(method==='groups')resolve(iptv.groups(p.offset));
 else if(method==='list')resolve(iptv.query(p));
